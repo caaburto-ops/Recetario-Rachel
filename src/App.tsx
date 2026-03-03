@@ -318,7 +318,7 @@ const RECIPES: Recipe[] = [
     id: '19',
     title: 'Pavo Molido con Champiñones',
     category: 'Fase 3',
-    image: 'https://images.unsplash.com/photo-1603333388196-83fa4c587b20?auto=format&fit=crop&q=80&w=800',
+    image: 'https://lh3.googleusercontent.com/d/1tjWm7_ZnrsFAf_-uHi-9Kx5bacfDRYYS',
     description: 'Pavo molido cremoso con champiñones y pasta fina.',
     ingredients: ['80 g pavo molido magro cocido', '60 g champiñones', '15 g yogurt natural', '15 g leche descremada', '40 g pasta cabello de ángel cocida'],
     instructions: [
@@ -334,7 +334,7 @@ const RECIPES: Recipe[] = [
     id: '20',
     title: 'Croquetas de Atún',
     category: 'Fase 3',
-    image: 'https://images.unsplash.com/photo-1560684352-8497838a2229?auto=format&fit=crop&q=80&w=800',
+    image: 'https://lh3.googleusercontent.com/d/1j12E9a-U34Ry68W3jKNmhESujBmTUl1y',
     description: 'Croquetas horneadas de atún con avena.',
     ingredients: ['120 g atún al agua drenado', '33 g clara de huevo (1 clara)', '20 g avena', 'Especias'],
     instructions: [
@@ -350,7 +350,7 @@ const RECIPES: Recipe[] = [
     id: '21',
     title: 'Boloñesa con Pasta',
     category: 'Fase 3',
-    image: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&q=80&w=800',
+    image: 'https://lh3.googleusercontent.com/d/1SkI2353DCqnTxkTY7mZbGXbeRqQBttg6',
     description: 'Carne molida magra con tomate natural y pasta.',
     ingredients: ['80 g carne molida 3% grasa cocida', '100 g tomate natural cocido', '60 g pasta cocida', '4.5 g aceite oliva'],
     instructions: [
@@ -366,7 +366,7 @@ const RECIPES: Recipe[] = [
     id: '22',
     title: 'Reineta al Limón con Arroz',
     category: 'Fase 3',
-    image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&q=80&w=800',
+    image: 'https://lh3.googleusercontent.com/d/1H1eYe0l2GhKQsLMP6Pud_W6NSD0wUPbl',
     description: 'Pescado blanco al horno con arroz basmati.',
     ingredients: ['80 g reineta cocida', '45 g arroz basmati cocido', '4.5 g aceite oliva', 'Jugo limón'],
     instructions: [
@@ -381,7 +381,7 @@ const RECIPES: Recipe[] = [
     id: '23',
     title: 'Tartar de Salmón',
     category: 'Fase 3',
-    image: 'https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?auto=format&fit=crop&q=80&w=800',
+    image: 'https://lh3.googleusercontent.com/d/1VDMt6-QJd5Tb1LGUkLJrES5NSYzMy691',
     description: 'Salmón fresco en cubos pequeños con palta.',
     ingredients: ['120 g salmón fresco', '50 g palta', '4 g aceite oliva', 'Vegetales picados finos'],
     instructions: [
@@ -397,7 +397,7 @@ const RECIPES: Recipe[] = [
     id: '24',
     title: 'Lasaña de Berenjena',
     category: 'Fase 3',
-    image: 'https://images.unsplash.com/photo-1629115913089-7554404b5729?auto=format&fit=crop&q=80&w=800',
+    image: 'https://lh3.googleusercontent.com/d/1HNQCPGLvmLB02H1S72mi5f2DZnbA8ikT',
     description: 'Capas de berenjena con carne molida y mozzarella light.',
     ingredients: ['200 g berenjena', '80 g carne molida magra', '60 g salsa tomate sin azúcar', '40 g queso mozzarella light'],
     instructions: [
@@ -671,8 +671,8 @@ export default function App() {
             className="relative aspect-square md:aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl"
           >
             <img 
-              src="https://images.unsplash.com/photo-1547592166-23ac45744acd?auto=format&fit=crop&q=80&w=1200" 
-              alt="Recetario Bariátrico" 
+              src="https://lh3.googleusercontent.com/d/155Ikpq-ej7u2O2kuJfmSoJAE74wq5vsh" 
+              alt="Budín de Zapallito con Atún" 
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
             />
@@ -680,15 +680,15 @@ export default function App() {
             <div className="absolute bottom-8 left-8 right-8 text-white">
               <div className="flex items-center gap-3 mb-3">
                 <div className="px-3 py-1 bg-olive rounded-full text-[10px] font-bold uppercase tracking-wider">
-                  Destacado Fase 2
+                  Destacado Fase 3
                 </div>
                 <div className="flex items-center gap-1 text-xs font-medium">
                   <Utensils size={12} />
-                  196 kcal
+                  182 kcal
                 </div>
               </div>
-              <h3 className="text-2xl font-serif font-bold">Papilla Carne Verde Sazón</h3>
-              <p className="text-sm text-white/80 mt-2">Carne magra con quinoa y espinaca, textura perfecta para tu recuperación.</p>
+              <h3 className="text-2xl font-serif font-bold">Budín de Zapallito con Atún</h3>
+              <p className="text-sm text-white/80 mt-2">Budín horneado de atún y zapallito italiano, textura perfecta para tu recuperación.</p>
             </div>
           </motion.div>
         </section>
