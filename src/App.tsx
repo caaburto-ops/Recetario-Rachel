@@ -122,6 +122,32 @@ const RECIPES: Recipe[] = [
     macros: { p: '19.5 g', c: '6.5 g', g: '9.1 g' }
   },
   {
+    id: '25',
+    title: 'Papilla Dulce Sazón',
+    category: 'Fase 2',
+    image: 'https://lh3.googleusercontent.com/d/1lNbJ0PiYcsRFsjHI_chOWR_7fpXJ5Rt9',
+    description: 'Papilla de pollo con papa, zapallo y zanahoria.',
+    ingredients: [
+      '60 g pechuga de pollo cocida',
+      '20 g papa cocida',
+      '20 g zapallo cocido',
+      '10 g zanahoria cocida',
+      '60 ml agua de cocción',
+      '20 ml leche proteica descremada',
+      '4 g aceite de oliva',
+      'Sal a gusto'
+    ],
+    instructions: [
+      'Cocer la pechuga de pollo en agua hasta alcanzar cocción completa, asegurando una textura blanda que facilite su posterior trituración.',
+      'Cocer la papa en agua hasta que esté completamente suave.',
+      'Paralelamente, hornear el zapallo y la zanahoria hasta que alcancen una consistencia tierna.',
+      'Una vez que todos los ingredientes estén cocidos, triturar junto con el agua de cocción y la leche proteica hasta obtener una papilla homogénea y sin grumos.',
+      'Añadir el aceite de oliva al final y mezclar suavemente antes de servir.'
+    ],
+    calories: '205 kcal',
+    macros: { p: '20 g', c: '9 g', g: '8 g' }
+  },
+  {
     id: '7',
     title: 'Papilla del Mar',
     category: 'Fase 2',
@@ -136,6 +162,53 @@ const RECIPES: Recipe[] = [
     ],
     calories: '162 kcal',
     macros: { p: '16.4 g', c: '8.0 g', g: '6.8 g' }
+  },
+  {
+    id: '26',
+    title: 'Papilla Reineta al Pesto',
+    category: 'Fase 2',
+    image: 'https://lh3.googleusercontent.com/d/1AdTeL3Xvr6FOvNrn0qHEj-50X0YQnQpx',
+    description: 'Papilla de reineta con quínoa y albahaca fresca.',
+    ingredients: [
+      '60 g reineta cocida',
+      '20 g quínoa cocida',
+      '5 g albahaca fresca',
+      '80 ml agua de cocción',
+      '5 g aceite de oliva (1 cdta)',
+      'Sal a gusto'
+    ],
+    instructions: [
+      'Cocer la reineta en agua con una pequeña cantidad de sal durante aproximadamente diez minutos hasta alcanzar una cocción completa y una textura blanda.',
+      'Transcurrido ese tiempo, añadir la albahaca fresca y continuar la cocción durante cinco minutos adicionales para que libere sus compuestos aromáticos.',
+      'Paralelamente, cocinar la quínoa previamente lavada hasta que los granos se abran completamente y logren una textura suave.',
+      'Una vez que todos los ingredientes estén cocidos, triturar junto con el agua de cocción y la quínoa hasta obtener una preparación completamente homogénea y sin grumos.',
+      'Incorporar finalmente el aceite de oliva y mezclar antes de servir.'
+    ],
+    calories: '162 kcal',
+    macros: { p: '13.9 g', c: '4.8 g', g: '9.8 g' }
+  },
+  {
+    id: '27',
+    title: 'Papilla Vegana',
+    category: 'Fase 2',
+    image: 'https://lh3.googleusercontent.com/d/1AdTeL3Xvr6FOvNrn0qHEj-50X0YQnQpx',
+    description: 'Papilla de tofu con papa y porotos verdes.',
+    ingredients: [
+      '60 g tofu firme',
+      '20 g papa cocida',
+      '15 g porotos verdes cocidos',
+      '80 ml agua de cocción',
+      '5 g aceite de oliva (1 cdta)',
+      'Sal, paprika y eneldo a gusto'
+    ],
+    instructions: [
+      'Cocer la papa y los porotos verdes en agua con una pequeña cantidad de sal hasta que ambos ingredientes alcancen una textura completamente blanda.',
+      'Una vez cocidos, añadir paprika y eneldo para aportar sabor y aroma a la preparación.',
+      'Incorporar el tofu firme previamente trozado y licuar junto con 80 ml del agua de cocción hasta obtener una papilla homogénea, suave y sin grumos.',
+      'Finalmente, añadir el aceite de oliva y mezclar suavemente para aumentar la densidad energética y mejorar la palatabilidad antes de servir.'
+    ],
+    calories: '123 kcal',
+    macros: { p: '8.1 g', c: '4.4 g', g: '8.2 g' }
   },
   {
     id: '8',
@@ -269,7 +342,7 @@ const RECIPES: Recipe[] = [
   {
     id: '16',
     title: 'Pollo al Curry con Puré Anaranjado',
-    category: 'Fase 3',
+    category: 'Fase 3 etapa 1',
     image: 'https://lh3.googleusercontent.com/d/1H_YcDZXJLWbqFjMRGvQbaWjqWIqmWhGs',
     description: 'Pollo en cubos pequeños con yogurt y puré de papa y zapallo.',
     ingredients: ['80 g pechuga de pollo cocida', '30 g yogurt natural descremado', '30 g leche de coco light', '20 g papa cocida', '30 g zapallo camote cocido', '4.5 g aceite de oliva', 'Curry y sal'],
@@ -285,7 +358,7 @@ const RECIPES: Recipe[] = [
   {
     id: '17',
     title: 'Budín de Zapallito con Atún',
-    category: 'Fase 3',
+    category: 'Fase 3 etapa 1',
     image: 'https://lh3.googleusercontent.com/d/155Ikpq-ej7u2O2kuJfmSoJAE74wq5vsh',
     description: 'Budín horneado de atún y zapallito italiano.',
     ingredients: ['66 g claras de huevo (2 claras)', '60 g atún al agua drenado', '100 g zapallito italiano cocido y escurrido', '100 g papa cocida (opcional)'],
@@ -301,7 +374,7 @@ const RECIPES: Recipe[] = [
   {
     id: '18',
     title: 'Omelette Espinaca y Jamón',
-    category: 'Fase 3',
+    category: 'Fase 3 etapa 1',
     image: 'https://lh3.googleusercontent.com/d/1DFOV6kvoXE41l8BInBhYDQJ6quSEmJtf',
     description: 'Omelette de claras con jamón de pavo y espinaca.',
     ingredients: ['66 g claras de huevo', '40 g jamón de pavo bajo sodio', '40 g espinaca cocida', '40 g quinoa cocida (acompañamiento)'],
@@ -317,7 +390,7 @@ const RECIPES: Recipe[] = [
   {
     id: '19',
     title: 'Pavo Molido con Champiñones',
-    category: 'Fase 3',
+    category: 'Fase 3 etapa 1',
     image: 'https://lh3.googleusercontent.com/d/1tjWm7_ZnrsFAf_-uHi-9Kx5bacfDRYYS',
     description: 'Pavo molido cremoso con champiñones y pasta fina.',
     ingredients: ['80 g pavo molido magro cocido', '60 g champiñones', '15 g yogurt natural', '15 g leche descremada', '40 g pasta cabello de ángel cocida'],
@@ -333,7 +406,7 @@ const RECIPES: Recipe[] = [
   {
     id: '20',
     title: 'Croquetas de Atún',
-    category: 'Fase 3',
+    category: 'Fase 3 etapa 1',
     image: 'https://lh3.googleusercontent.com/d/1j12E9a-U34Ry68W3jKNmhESujBmTUl1y',
     description: 'Croquetas horneadas de atún con avena.',
     ingredients: ['120 g atún al agua drenado', '33 g clara de huevo (1 clara)', '20 g avena', 'Especias'],
@@ -347,9 +420,52 @@ const RECIPES: Recipe[] = [
     macros: { p: '39.5 g', c: '13 g', g: '4.8 g' }
   },
   {
+    id: '28',
+    title: 'Canoitas de Zapallo Italiano',
+    category: 'Fase 3 etapa 1',
+    image: 'https://lh3.googleusercontent.com/d/1UoVFzBBukYlujbklTHRlMB5t_XbGrvGL',
+    description: 'Zapallito italiano relleno con carne de pavo y vegetales.',
+    ingredients: [
+      '120 g zapallito italiano cocido',
+      '80 g carne molida de pavo cocida',
+      '15 g zanahoria',
+      '10 g apio',
+      '20 g champiñones',
+      'Sal y especias a gusto'
+    ],
+    instructions: [
+      'Cocer el zapallito italiano entero en agua hasta que esté blando pero mantenga su estructura.',
+      'Cortar longitudinalmente y retirar cuidadosamente parte del centro con una cuchara para formar cavidades.',
+      'Saltear el pavo molido junto con zanahoria, apio y champiñones picados finamente hasta lograr cocción completa.',
+      'Rellenar las cavidades del zapallo con la mezcla de carne y hornear durante 8 minutos para integrar sabores.'
+    ],
+    calories: '174 kcal',
+    macros: { p: '24.5 g', c: '6.1 g', g: '5.6 g' }
+  },
+  {
+    id: '29',
+    title: 'Helado Casero de Frutilla',
+    category: 'Fase 3 etapa 1',
+    image: 'https://lh3.googleusercontent.com/d/1TWjMHASddb6C9kr1eXsuv-jiSSqtl192',
+    description: 'Helado de frutilla con yogurt proteico.',
+    ingredients: [
+      '150 g frutillas',
+      '30 ml agua de cocción',
+      '170 g yogurt proteico natural',
+      'Endulzante sin calorías'
+    ],
+    instructions: [
+      'Cocer las frutillas hasta que estén completamente blandas y luego procesarlas junto con el agua de cocción hasta obtener un puré fino.',
+      'Mezclar el puré con yogurt proteico natural hasta lograr una preparación homogénea.',
+      'Verter en moldes para helado y congelar durante al menos ocho horas para lograr una textura firme antes de consumir.'
+    ],
+    calories: '142 kcal',
+    macros: { p: '14.1 g', c: '10.5 g', g: '2.3 g' }
+  },
+  {
     id: '21',
     title: 'Boloñesa con Pasta',
-    category: 'Fase 3',
+    category: 'Fase 3 etapa 2',
     image: 'https://lh3.googleusercontent.com/d/1SkI2353DCqnTxkTY7mZbGXbeRqQBttg6',
     description: 'Carne molida magra con tomate natural y pasta.',
     ingredients: ['80 g carne molida 3% grasa cocida', '100 g tomate natural cocido', '60 g pasta cocida', '4.5 g aceite oliva'],
@@ -365,7 +481,7 @@ const RECIPES: Recipe[] = [
   {
     id: '22',
     title: 'Reineta al Limón con Arroz',
-    category: 'Fase 3',
+    category: 'Fase 3 etapa 2',
     image: 'https://lh3.googleusercontent.com/d/1H1eYe0l2GhKQsLMP6Pud_W6NSD0wUPbl',
     description: 'Pescado blanco al horno con arroz basmati.',
     ingredients: ['80 g reineta cocida', '45 g arroz basmati cocido', '4.5 g aceite oliva', 'Jugo limón'],
@@ -378,9 +494,117 @@ const RECIPES: Recipe[] = [
     macros: { p: '23.4 g', c: '23 g', g: '9 g' }
   },
   {
+    id: '30',
+    title: 'Chapsui de Pollo',
+    category: 'Fase 3 etapa 2',
+    image: 'https://lh3.googleusercontent.com/d/1dJDXPi2WDCShScU7zJ1CXyi70tSVwMhK',
+    description: 'Pollo salteado con verduras variadas y salsa de soya.',
+    ingredients: [
+      '80 g pechuga de pollo',
+      '30 g zanahoria',
+      '30 g champiñones',
+      '30 g porotos verdes',
+      '20 g dientes de dragón',
+      '15 ml salsa de soya'
+    ],
+    instructions: [
+      'Cortar las verduras en trozos pequeños para facilitar su cocción y posterior masticación.',
+      'Cocinar en un sartén junto con el pollo en cubos pequeños agregando pequeñas cantidades de agua para evitar adherencias.',
+      'Cuando las verduras estén blandas incorporar los dientes de dragón.',
+      'Retirar del fuego y añadir salsa de soya mezclando suavemente antes de servir.'
+    ],
+    calories: '178 kcal',
+    macros: { p: '25.7 g', c: '7.4 g', g: '4.2 g' }
+  },
+  {
+    id: '31',
+    title: 'Panqueques Proteicos',
+    category: 'Fase 3 etapa 2',
+    image: 'https://lh3.googleusercontent.com/d/1GSUUaBy1ZbqZD_hMrVQ-NQ7lafKXLN-R',
+    description: 'Panqueques altos en proteína con plátano.',
+    ingredients: [
+      '15 g whey protein',
+      '33 g clara de huevo',
+      '30 g plátano',
+      'Salsa de fruta cocida'
+    ],
+    instructions: [
+      'Mezclar el whey protein con la clara de huevo y el plátano previamente triturado hasta formar una masa homogénea.',
+      'Calentar un sartén antiadherente y cocinar pequeñas porciones de la mezcla por ambos lados hasta que estén firmes.',
+      'Servir acompañados de una pequeña cantidad de fruta cocida para aportar sabor y humedad.'
+    ],
+    calories: '128 kcal',
+    macros: { p: '15.4 g', c: '11.2 g', g: '1.6 g' }
+  },
+  {
+    id: '32',
+    title: 'Hotcakes de Cacao',
+    category: 'Fase 3 etapa 2',
+    image: 'https://lh3.googleusercontent.com/d/14bxH0DiZTgIrFJTvH7V_WNcrNJt3RjFi',
+    description: 'Hotcakes proteicos con cacao amargo.',
+    ingredients: [
+      '10 g harina de avena',
+      '33 g clara de huevo',
+      '15 g whey protein',
+      '5 g cacao amargo',
+      'Polvo de hornear',
+      'Endulzante'
+    ],
+    instructions: [
+      'Mezclar todos los ingredientes hasta obtener una masa suave y homogénea.',
+      'Calentar un sartén antiadherente y colocar pequeñas porciones de la mezcla formando discos.',
+      'Cocinar a fuego medio por ambos lados hasta que estén firmes.',
+      'Servir con una pequeña cantidad de compota de fruta natural.'
+    ],
+    calories: '134 kcal',
+    macros: { p: '16.8 g', c: '8.6 g', g: '2.3 g' }
+  },
+  {
+    id: '33',
+    title: 'Mugcake Proteico',
+    category: 'Fase 3 etapa 2',
+    image: 'https://lh3.googleusercontent.com/d/1b_f4cVdCmZwo7RqFpoupsn0jCtiSUmm7',
+    description: 'Bizcocho rápido en taza alto en proteína.',
+    ingredients: [
+      '1 huevo',
+      '45 g yogurt proteico',
+      '20 g avena',
+      '15 g whey protein',
+      '5 g polvo de hornear'
+    ],
+    instructions: [
+      'Colocar todos los ingredientes en una taza apta para microondas y mezclar hasta integrar completamente.',
+      'Cocinar en microondas durante dos a tres minutos hasta que el centro esté firme.',
+      'Dejar reposar un minuto antes de consumir para estabilizar la textura.'
+    ],
+    calories: '228 kcal',
+    macros: { p: '24.6 g', c: '14.1 g', g: '8.3 g' }
+  },
+  {
+    id: '34',
+    title: 'Arepa Reina',
+    category: 'Fase 3 etapa 2',
+    image: 'https://lh3.googleusercontent.com/d/1oxx6MWJTt8u3b8dd8to2jURKirXfcoEj',
+    description: 'Arepa de maíz rellena con pollo y palta.',
+    ingredients: [
+      '30 g harina de maíz precocida',
+      '30 ml agua',
+      '60 g pollo cocido',
+      '40 g palta'
+    ],
+    instructions: [
+      'Mezclar la harina de maíz con agua y sal hasta formar una masa uniforme.',
+      'Dejar reposar cinco minutos para hidratar completamente.',
+      'Formar una pequeña arepa y cocinar en sartén antiadherente por ambos lados hasta dorar ligeramente.',
+      'Abrir y rellenar con pollo desmenuzado mezclado con palta.'
+    ],
+    calories: '246 kcal',
+    macros: { p: '18.2 g', c: '18.6 g', g: '11.3 g' }
+  },
+  {
     id: '23',
     title: 'Tartar de Salmón',
-    category: 'Fase 3',
+    category: 'Fase 3 etapa 3',
     image: 'https://lh3.googleusercontent.com/d/1VDMt6-QJd5Tb1LGUkLJrES5NSYzMy691',
     description: 'Salmón fresco en cubos pequeños con palta.',
     ingredients: ['120 g salmón fresco', '50 g palta', '4 g aceite oliva', 'Vegetales picados finos'],
@@ -396,7 +620,7 @@ const RECIPES: Recipe[] = [
   {
     id: '24',
     title: 'Lasaña de Berenjena',
-    category: 'Fase 3',
+    category: 'Fase 3 etapa 3',
     image: 'https://lh3.googleusercontent.com/d/1HNQCPGLvmLB02H1S72mi5f2DZnbA8ikT',
     description: 'Capas de berenjena con carne molida y mozzarella light.',
     ingredients: ['200 g berenjena', '80 g carne molida magra', '60 g salsa tomate sin azúcar', '40 g queso mozzarella light'],
@@ -408,10 +632,217 @@ const RECIPES: Recipe[] = [
     ],
     calories: '430 kcal',
     macros: { p: '33 g', c: '18 g', g: '26 g' }
+  },
+  {
+    id: '35',
+    title: 'Pan de Linaza Express',
+    category: 'Fase 3 etapa 3',
+    image: 'https://lh3.googleusercontent.com/d/1500hec-l-uspEh8PGqUY8ng20KVRpBOT',
+    description: 'Pan rápido de linaza alto en fibra y grasas saludables.',
+    ingredients: [
+      '30 g harina de linaza',
+      '2 huevos',
+      '5 g polvo de hornear',
+      'Ajo y orégano'
+    ],
+    instructions: [
+      'Mezclar todos los ingredientes en un recipiente apto para microondas hasta formar una masa uniforme.',
+      'Cocinar durante tres minutos hasta que el pan esté completamente firme.',
+      'Dejar enfriar, cortar en rebanadas y tostar ligeramente antes de consumir.'
+    ],
+    calories: '268 kcal',
+    macros: { p: '17.6 g', c: '3.4 g', g: '20.4 g' }
+  },
+  {
+    id: '36',
+    title: 'Spaghetti de Zapallo',
+    category: 'Fase 3 etapa 3',
+    image: 'https://lh3.googleusercontent.com/d/1wxwtkIiKx6ZKFSE3ha2kPg8O1buL_FUc',
+    description: 'Spaghetti vegetal de zapallo butternut.',
+    ingredients: [
+      '200 g zapallo butternut',
+      '5 g aceite de oliva',
+      'Sal y especias'
+    ],
+    instructions: [
+      'Cortar el zapallo por la mitad y retirar semillas.',
+      'Hornear a 180 °C durante aproximadamente cuarenta minutos hasta que la pulpa esté completamente blanda.',
+      'Raspar la pulpa con un tenedor para formar fibras similares a pasta.',
+      'Añadir aceite de oliva y especias antes de servir.'
+    ],
+    calories: '114 kcal',
+    macros: { p: '2.0 g', c: '21.0 g', g: '5.2 g' }
+  },
+  {
+    id: '37',
+    title: 'Ceviche de Champiñones',
+    category: 'Fase 3 etapa 3',
+    image: 'https://lh3.googleusercontent.com/d/1UeSbjSqrAhRLiuMAdktl7l8DyP3hXAB4',
+    description: 'Ceviche vegetal fresco a base de champiñones y palta.',
+    ingredients: [
+      '200 g champiñones',
+      '50 g cebolla morada',
+      '50 g pimentón rojo',
+      '50 g pimentón verde',
+      '70 g palta',
+      '20 ml jugo de limón',
+      '10 g aceite de oliva'
+    ],
+    instructions: [
+      'Cortar todos los vegetales en cubos pequeños y colocarlos en un recipiente amplio.',
+      'Añadir jugo de limón, aceite de oliva, sal y especias.',
+      'Mezclar suavemente para integrar sabores.',
+      'Refrigerar durante al menos treinta minutos antes de consumir para permitir la maceración.'
+    ],
+    calories: '238 kcal',
+    macros: { p: '5.6 g', c: '13.8 g', g: '18.2 g' }
+  },
+  {
+    id: '38',
+    title: 'Pan de Palta',
+    category: 'Fase 3 etapa 3',
+    image: 'https://lh3.googleusercontent.com/d/1s_EIfezrKRIFArIYvl0OVrPGe2ed_4C_',
+    description: 'Pan nutritivo a base de palta y huevo, alto en proteínas y grasas saludables.',
+    ingredients: [
+      '200 g palta',
+      '150 g huevo (3 huevos)',
+      '56 g queso mozzarella rallado',
+      '5 g polvo de hornear',
+      'Sal y aliños a gusto'
+    ],
+    instructions: [
+      'Triturar la palta hasta obtener una pasta suave.',
+      'Batir los huevos hasta lograr una mezcla ligeramente espumosa.',
+      'Incorporar la palta molida junto con el queso mozzarella rallado, el polvo de hornear y los aliños. Mezclar hasta integrar completamente.',
+      'Distribuir la preparación en moldes pequeños y hornear a 180 °C durante aproximadamente veinte minutos.'
+    ],
+    calories: '615 kcal',
+    macros: { p: '31.4 g', c: '13.8 g', g: '48.7 g' }
+  },
+  {
+    id: '39',
+    title: 'Queque de Limón',
+    category: 'Fase 3 etapa 3',
+    image: 'https://lh3.googleusercontent.com/d/1GGKqvrx_ttA5Nc1K45MyRJ7JnSMO_Tvs',
+    description: 'Queque esponjoso de limón con harina de avena y yogurt.',
+    ingredients: [
+      '100 g huevo (2 huevos)',
+      '120 g endulzante en polvo',
+      '60 ml aceite vegetal',
+      '240 g yogurt natural',
+      '300 g harina de avena',
+      '5 g polvo de hornear',
+      'Ralladura y jugo de limón'
+    ],
+    instructions: [
+      'Batir los huevos junto con el endulzante hasta lograr una mezcla espumosa.',
+      'Añadir el aceite vegetal y la ralladura de limón.',
+      'Incorporar el jugo de limón y el yogurt natural.',
+      'Agregar la harina de avena y mezclar suavemente con movimientos envolventes.',
+      'Añadir el polvo de hornear y hornear a 180 °C durante aproximadamente treinta minutos.'
+    ],
+    calories: '1185 kcal (receta completa)',
+    macros: { p: '47.2 g', c: '158.3 g', g: '39.6 g' }
+  },
+  {
+    id: '40',
+    title: 'Banana Bread',
+    category: 'Fase 3 etapa 3',
+    image: 'https://lh3.googleusercontent.com/d/1TUqQ_xI3yIiw4eMFlFpwOdPTUDVwcsTY',
+    description: 'Pan de plátano esponjoso y nutritivo con harina de avena.',
+    ingredients: [
+      '240 g plátano maduro (2 unidades)',
+      '100 g huevo (2 huevos)',
+      '60 ml aceite vegetal',
+      '240 g harina de avena',
+      '60 ml leche descremada',
+      '5 g polvo de hornear',
+      '20 g endulzante'
+    ],
+    instructions: [
+      'Triturar los plátanos hasta formar un puré uniforme.',
+      'Batir los huevos junto con el aceite hasta integrar completamente.',
+      'Incorporar el puré de plátano y el endulzante.',
+      'Añadir la harina de avena, la leche descremada y el polvo de hornear.',
+      'Mezclar hasta obtener una masa homogénea y hornear a 180 °C durante aproximadamente treinta y cinco minutos.'
+    ],
+    calories: '1260 kcal (receta completa)',
+    macros: { p: '46.8 g', c: '176.4 g', g: '47.1 g' }
+  },
+  {
+    id: '41',
+    title: 'Brownie sin Azúcar',
+    category: 'Fase 3 etapa 3',
+    image: 'https://lh3.googleusercontent.com/d/1i6b1rgj3zJDeh07n700PafSxVYnF_adc',
+    description: 'Brownie intenso y húmedo sin azúcar añadida.',
+    ingredients: [
+      '150 g huevo (3 huevos)',
+      '45 g yogurt natural',
+      '120 ml aceite vegetal',
+      '60 g harina de avena',
+      '50 g cacao amargo',
+      '120 g alulosa',
+      '5 g polvo de hornear',
+      '1 g café en polvo'
+    ],
+    instructions: [
+      'Batir los huevos con el yogurt hasta integrar completamente.',
+      'Añadir el aceite y continuar mezclando.',
+      'Incorporar la harina de avena, el cacao, la alulosa, el café y el polvo de hornear.',
+      'Mezclar con movimientos envolventes hasta obtener una masa homogénea.',
+      'Verter en un molde y hornear a 180 °C durante aproximadamente veinticinco minutos.'
+    ],
+    calories: '1472 kcal (receta completa)',
+    macros: { p: '38.2 g', c: '62.5 g', g: '123.8 g' }
+  },
+  {
+    id: '42',
+    title: 'Bolitas Cacao Maní',
+    category: 'Fase 3 etapa 3',
+    image: 'https://lh3.googleusercontent.com/d/1fBFz8_LeO5MfLpcGsYfUjW099lgsIJ2j',
+    description: 'Snack energético de mantequilla de maní y cacao.',
+    ingredients: [
+      '12 g alulosa en polvo (3 cucharadas)',
+      '64 g mantequilla de maní natural (4 cucharadas)',
+      '20 g cacao amargo en polvo (4 cucharadas)',
+      '96 g alulosa adicional o endulzante equivalente',
+      '1 g sal'
+    ],
+    instructions: [
+      'Colocar en un recipiente la mantequilla de maní natural junto con el cacao amargo en polvo.',
+      'Añadir la alulosa y una pizca de sal para equilibrar el sabor.',
+      'Mezclar de manera constante hasta obtener una pasta homogénea y firme.',
+      'Con las manos limpias formar pequeñas bolitas de tamaño uniforme.',
+      'Refrigerar durante al menos treinta minutos para que la mezcla tome consistencia.'
+    ],
+    calories: '423 kcal (receta completa)',
+    macros: { p: '16.7 g', c: '18.6 g', g: '34.9 g' }
+  },
+  {
+    id: '43',
+    title: 'Mousse de Huevo y Cacao',
+    category: 'Fase 3 etapa 3',
+    image: 'https://lh3.googleusercontent.com/d/1XOxNTAqnhfSoVR9i7-ahXG4hSq0hbI9W',
+    description: 'Mousse aireado y proteico de cacao.',
+    ingredients: [
+      '100 g huevo (2 huevos)',
+      '15 g cacao amargo en polvo (3 cucharadas)',
+      '8 g alulosa (2 cucharadas)',
+      '16 g mantequilla de maní (1 cucharada)',
+      '60 ml leche descremada'
+    ],
+    instructions: [
+      'Colocar los huevos en una procesadora o licuadora junto con el cacao amargo, la alulosa y la mantequilla de maní.',
+      'Añadir la leche descremada para facilitar la emulsión.',
+      'Procesar durante varios segundos hasta obtener una mezcla completamente homogénea y aireada.',
+      'Refrigerar la preparación durante al menos treinta minutos antes de consumir para mejorar la textura.'
+    ],
+    calories: '274 kcal',
+    macros: { p: '17.8 g', c: '8.9 g', g: '18.4 g' }
   }
 ];
 
-const CATEGORIES = ['Todas', 'Fase 1', 'Fase 2', 'Fase 3'];
+const CATEGORIES = ['Todas', 'Fase 1', 'Fase 2', 'Fase 3 etapa 1', 'Fase 3 etapa 2', 'Fase 3 etapa 3'];
 
 const RecipeCard = ({ recipe, onClick }: { recipe: Recipe, onClick: () => void }) => {
   return (
@@ -680,7 +1111,7 @@ export default function App() {
             <div className="absolute bottom-8 left-8 right-8 text-white">
               <div className="flex items-center gap-3 mb-3">
                 <div className="px-3 py-1 bg-olive rounded-full text-[10px] font-bold uppercase tracking-wider">
-                  Destacado Fase 3
+                  Destacado Fase 3 etapa 1
                 </div>
                 <div className="flex items-center gap-1 text-xs font-medium">
                   <Utensils size={12} />
