@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, Clock, Users, ChevronRight, Utensils, Heart, Filter, BookOpen, X } from 'lucide-react';
+import { Search, Clock, Users, ChevronRight, Utensils, Heart, Filter, BookOpen, X, Instagram, Globe } from 'lucide-react';
 import { useState, useMemo } from 'react';
 import { cn } from './lib/utils';
 
@@ -87,6 +87,29 @@ const RECIPES: Recipe[] = [
     ],
     calories: '128 kcal',
     macros: { p: '17.5 g', c: '7.5 g', g: '0.5 g' }
+  },
+  {
+    id: '56',
+    title: 'Matcha Latte',
+    category: 'Fase 1',
+    image: 'https://lh3.googleusercontent.com/d/1yp5Gcd3plgyPnX02oclwuXpBNBBL9VTF',
+    description: 'Bebida antioxidante de té matcha con leche proteica.',
+    ingredients: [
+      '2 g té matcha en polvo (1 cucharadita)',
+      '60 ml agua tibia',
+      '150 ml leche descremada o leche proteica',
+      '1 ml esencia de vainilla (1 gota)',
+      '5 gotas de endulzante líquido'
+    ],
+    instructions: [
+      'Disolver el té matcha en el agua tibia con un espumador hasta que no queden grumos.',
+      'Calentar la leche sin que llegue a hervir.',
+      'Incorporar la leche caliente a la mezcla de matcha batiendo suavemente.',
+      'Añadir la vainilla y el endulzante, mezclando para integrar sabores.',
+      'Consumir inmediatamente para disfrutar de su aroma y textura.'
+    ],
+    calories: '52 kcal',
+    macros: { p: '5.2 g', c: '7.5 g', g: '0.2 g' }
   },
   // FASE 2
   {
@@ -337,6 +360,33 @@ const RECIPES: Recipe[] = [
     ],
     calories: '118 kcal',
     macros: { p: '16.5 g', c: '6 g', g: '0.5 g' }
+  },
+  {
+    id: '57',
+    title: 'Mousse de Chocolate a Base de Zapallo',
+    category: 'Fase 2',
+    image: 'https://lh3.googleusercontent.com/d/1Pdqk49hYMsl_LQZaUiqpPLQbDrJDEhv1',
+    description: 'Mousse cremoso de chocolate y zapallo, una opción saludable y nutritiva.',
+    ingredients: [
+      '60 g zapallo cocido',
+      '33 g clara de huevo (1 clara)',
+      '7 g cacao amargo en polvo (1 cucharada)',
+      '15 ml aceite de oliva (1 cucharada)',
+      '60 ml agua (1/4 taza)',
+      '5 ml esencia de vainilla',
+      '5 g polvo de hornear (1 cucharadita)',
+      'Endulzante líquido a gusto'
+    ],
+    instructions: [
+      'Cocer el zapallo hasta que esté blando y triturarlo hasta obtener un puré suave.',
+      'En un recipiente mezclar el puré con la clara, cacao, vainilla y agua.',
+      'Incorporar el aceite de oliva y el endulzante, mezclando bien.',
+      'Agregar el polvo de hornear y revolver hasta obtener una mezcla homogénea.',
+      'Verter en un molde engrasado y hornear a 180 °C durante aproximadamente 20 minutos.',
+      'Dejar enfriar brevemente antes de consumir para mejorar la consistencia.'
+    ],
+    calories: '176 kcal',
+    macros: { p: '6.3 g', c: '7.8 g', g: '14.5 g' }
   },
   // FASE 3
   {
@@ -602,6 +652,53 @@ const RECIPES: Recipe[] = [
     macros: { p: '18.2 g', c: '18.6 g', g: '11.3 g' }
   },
   {
+    id: '55',
+    title: 'Pescado en Cama de Verduras Cocidas',
+    category: 'Fase 3 etapa 2',
+    image: 'https://lh3.googleusercontent.com/d/12i9ig-czV6yiXuv3gp32LjhctNBpu3sX',
+    description: 'Pescado blanco horneado sobre una base de zanahoria y espinaca cocida.',
+    ingredients: [
+      '80 g pescado blanco (reineta, merluza o similar)',
+      '60 g zanahoria cocida',
+      '40 g espinaca cocida',
+      '5 g romero fresco (1 ramita)',
+      '5 ml aceite de oliva (1 cucharadita)',
+      'Sal y aliños a gusto'
+    ],
+    instructions: [
+      'Precalentar el horno a 180 °C.',
+      'Cocinar previamente la zanahoria y la espinaca hasta que estén blandas y picarlas finamente.',
+      'Colocar las verduras en el fondo de una fuente para horno formando una cama.',
+      'Sazonar el pescado y disponerlo sobre las verduras con la ramita de romero.',
+      'Hornear durante aproximadamente 20 minutos hasta que el pescado esté cocido.',
+      'Al retirar, rociar con aceite de oliva y servir caliente.'
+    ],
+    calories: '146 kcal',
+    macros: { p: '17.3 g', c: '6.8 g', g: '5.6 g' }
+  },
+  {
+    id: '59',
+    title: 'Tortillas de Kéfir',
+    category: 'Fase 3 etapa 3',
+    image: 'https://lh3.googleusercontent.com/d/13uBAjDcTGLcm6mP473f1TQJpzNIN4yHb',
+    description: 'Tortillas suaves y proteicas a base de huevo, kéfir y queso.',
+    ingredients: [
+      '100 g huevo (2 huevos)',
+      '30 g yogurt kéfir natural (2 cucharadas)',
+      '30 g queso granulado (2 cucharadas)'
+    ],
+    instructions: [
+      'Batir los huevos ligeramente en un recipiente hasta integrar clara y yema.',
+      'Añadir el yogurt kéfir y el queso granulado, mezclando hasta obtener una preparación homogénea.',
+      'Calentar un sartén antiadherente a fuego medio.',
+      'Verter la mezcla formando una tortilla delgada (también se puede usar waflera o tostiarepa).',
+      'Cocinar por ambos lados hasta que esté cuajada y ligeramente dorada.',
+      'Servir caliente como base para preparaciones saladas.'
+    ],
+    calories: '215 kcal',
+    macros: { p: '18.9 g', c: '1.7 g', g: '14.7 g' }
+  },
+  {
     id: '23',
     title: 'Tartar de Salmón',
     category: 'Fase 3 etapa 3',
@@ -698,6 +795,56 @@ const RECIPES: Recipe[] = [
     macros: { p: '5.6 g', c: '13.8 g', g: '18.2 g' }
   },
   {
+    id: '52',
+    title: 'Carpaccio de Zapallo Italiano',
+    category: 'Fase 3 etapa 3',
+    image: 'https://lh3.googleusercontent.com/d/1lroQwjO9SCxrVL-0u-zH-p1L6faBIZ66',
+    description: 'Carpaccio fresco de zapallo italiano con limón, queso de cabra y frutos secos.',
+    ingredients: [
+      '400 g zapallo italiano (2 unidades medianas)',
+      '60 ml jugo de limón (2 limones)',
+      '9 g aceite de oliva (2 cucharaditas)',
+      '15 g queso de cabra desmenuzado',
+      '10 g frutos secos molidos (nueces o almendras)',
+      '5 g hojas de albahaca fresca',
+      'Sal y aliños a gusto'
+    ],
+    instructions: [
+      'Lavar los zapallos italianos y cortarlos en rodajas muy finas.',
+      'Disponer las láminas ordenadamente sobre un plato amplio.',
+      'Rociar con el jugo de limón para aportar acidez y frescura.',
+      'Añadir el aceite de oliva distribuyéndolo de manera homogénea.',
+      'Incorporar sal y aliños a gusto.',
+      'Decorar con hojas de albahaca fresca, frutos secos molidos y queso de cabra desmenuzado.',
+      'Refrigerar brevemente antes de servir para potenciar los sabores.'
+    ],
+    calories: '227 kcal',
+    macros: { p: '8.4 g', c: '15.2 g', g: '16.2 g' }
+  },
+  {
+    id: '53',
+    title: 'Garbanzos Crocantes',
+    category: 'Fase 3 etapa 3',
+    image: 'https://lh3.googleusercontent.com/d/1cLOS2pJ1-OmbR6vHbSyDOp0UHQjLATqp',
+    description: 'Garbanzos tostados y crujientes con paprika y ajo, ideales como snack.',
+    ingredients: [
+      '165 g garbanzos cocidos (1 taza)',
+      '5 g paprika (1 cucharadita)',
+      '2 g ajo en polvo (1/2 cucharadita)',
+      '14 g aceite de oliva (1 cucharada)',
+      'Sal a gusto'
+    ],
+    instructions: [
+      'Escurrir completamente los garbanzos cocidos y secarlos con papel absorbente.',
+      'Mezclarlos con la paprika, el ajo en polvo, el aceite de oliva y sal a gusto.',
+      'Distribuirlos en una sola capa sobre una bandeja de horno o en la cesta de una freidora de aire.',
+      'Cocinar a 180 °C durante aproximadamente 30 minutos, removiendo ocasionalmente.',
+      'Dejar enfriar unos minutos antes de consumir para que adquieran una textura más crujiente.'
+    ],
+    calories: '409 kcal',
+    macros: { p: '14.8 g', c: '44.9 g', g: '17.4 g' }
+  },
+  {
     id: '38',
     title: 'Pan de Palta',
     category: 'Fase 3 etapa 3',
@@ -718,6 +865,29 @@ const RECIPES: Recipe[] = [
     ],
     calories: '615 kcal',
     macros: { p: '31.4 g', c: '13.8 g', g: '48.7 g' }
+  },
+  {
+    id: '47',
+    title: 'Pasta de Huevo con Ciboulette',
+    category: 'Fase 3 etapa 3',
+    image: 'https://lh3.googleusercontent.com/d/1LM9JRxodmV54cn9QfajRlIERHcBmjllo',
+    description: 'Pasta cremosa de huevo y yogurt con un toque de ciboulette fresco.',
+    ingredients: [
+      '150 g huevo cocido (3 huevos)',
+      '30 g yogurt natural sin endulzar (2 cucharadas)',
+      '5 g ciboulette fresco picado (1 cucharada)',
+      'Sal y aliños a gusto'
+    ],
+    instructions: [
+      'Cocer los huevos en agua hirviendo durante aproximadamente diez minutos hasta que estén completamente duros.',
+      'Enfriarlos bajo agua fría, retirar la cáscara y triturarlos hasta obtener una textura desmenuzada fina.',
+      'Añadir el yogurt natural sin endulzar para aportar cremosidad y facilitar la mezcla.',
+      'Incorporar el ciboulette picado finamente junto con sal y aliños a gusto.',
+      'Mezclar suavemente hasta lograr una pasta homogénea.',
+      'Refrigerar durante algunos minutos antes de servir para mejorar la textura.'
+    ],
+    calories: '247 kcal',
+    macros: { p: '19.6 g', c: '2.0 g', g: '16.8 g' }
   },
   {
     id: '39',
@@ -743,6 +913,34 @@ const RECIPES: Recipe[] = [
     ],
     calories: '1185 kcal (receta completa)',
     macros: { p: '47.2 g', c: '158.3 g', g: '39.6 g' }
+  },
+  {
+    id: '54',
+    title: 'Queque de Coco y Arándanos',
+    category: 'Fase 3 etapa 3',
+    image: 'https://lh3.googleusercontent.com/d/14WqDu2r9Jd5TR6LEHF9WS8BsLNSPAiPG',
+    description: 'Queque esponjoso de coco con arándanos frescos, sin gluten y sin azúcar refinada.',
+    ingredients: [
+      '112 g harina de coco (1 taza)',
+      '100 g huevo (2 huevos)',
+      '60 ml aceite vegetal (coco, oliva suave o canola)',
+      '200 g arándanos frescos',
+      '96 g alulosa en polvo o endulzante equivalente',
+      '5 ml esencia de vainilla (1 cucharadita)',
+      '5 g polvo de hornear (1 cucharadita)',
+      '100 ml leche de almendras sin azúcar'
+    ],
+    instructions: [
+      'Precalentar el horno a 180 °C y engrasar un molde.',
+      'En un recipiente mezclar los huevos, aceite, esencia de vainilla y leche de almendras.',
+      'En otro recipiente combinar la harina de coco, alulosa y polvo de hornear.',
+      'Incorporar gradualmente los ingredientes secos sobre la mezcla líquida hasta formar una masa homogénea.',
+      'Añadir los arándanos frescos y mezclar suavemente.',
+      'Verter la preparación en el molde y hornear durante aproximadamente 30 minutos hasta que esté firme y dorada.',
+      'Dejar enfriar antes de cortar para mejorar la textura.'
+    ],
+    calories: '1037 kcal (receta completa)',
+    macros: { p: '36.9 g', c: '69.4 g', g: '70.6 g' }
   },
   {
     id: '40',
@@ -839,6 +1037,226 @@ const RECIPES: Recipe[] = [
     ],
     calories: '274 kcal',
     macros: { p: '17.8 g', c: '8.9 g', g: '18.4 g' }
+  },
+  {
+    id: '44',
+    title: 'Brownie de Calabaza',
+    category: 'Fase 3 etapa 3',
+    image: 'https://lh3.googleusercontent.com/d/1TBBSjXg16jrF_BbsGrCthTbj_8f4Redt',
+    description: 'Brownie tipo fudge a base de puré de calabaza y cacao.',
+    ingredients: [
+      '245 g puré de calabaza cocida',
+      '100 g huevo (2 huevos)',
+      '120 ml aceite vegetal (coco, oliva suave o canola)',
+      '50 g cacao amargo en polvo sin azúcar',
+      '96 g alulosa en polvo',
+      '5 ml esencia de vainilla',
+      '2 g polvo de hornear',
+      '1 g sal',
+      'Opcional: 30 g chips de chocolate ≥60 % cacao'
+    ],
+    instructions: [
+      'Precalentar el horno a 180 °C y engrasar un molde pequeño.',
+      'En un recipiente amplio colocar el puré de calabaza cocida junto con los huevos, el aceite vegetal, la esencia de vainilla y el endulzante. Mezclar hasta obtener una preparación homogénea.',
+      'Añadir el cacao en polvo, el polvo de hornear y la sal, integrando con movimientos constantes hasta formar una masa uniforme.',
+      'Verter la mezcla en el molde y, si se desea, agregar chips de chocolate o nueces sobre la superficie.',
+      'Hornear durante aproximadamente 30 minutos hasta que al insertar un palillo este salga con migas húmedas.',
+      'Dejar enfriar completamente antes de cortar para mejorar la textura tipo fudge.'
+    ],
+    calories: '1289 kcal (receta completa)',
+    macros: { p: '27.9 g', c: '51.6 g', g: '109.8 g' }
+  },
+  {
+    id: '45',
+    title: 'Cocadas',
+    category: 'Fase 3 etapa 3',
+    image: 'https://lh3.googleusercontent.com/d/1OzO6ANRiyaOsB4mrjIHaue6pffvqox6O',
+    description: 'Bolitas de coco horneadas, suaves por dentro y doradas por fuera.',
+    ingredients: [
+      '66 g clara de huevo (2 claras)',
+      '120 g coco rallado sin azúcar (1 1/2 taza)',
+      '24 g endulzante en polvo (2 cucharadas)'
+    ],
+    instructions: [
+      'Colocar las claras de huevo en un recipiente limpio y batirlas hasta alcanzar punto nieve.',
+      'Incorporar gradualmente el coco rallado junto con el endulzante en polvo, mezclando con movimientos envolventes.',
+      'Formar pequeñas bolitas de tamaño uniforme y colocarlas sobre una bandeja con papel de hornear.',
+      'Cocinar en horno previamente precalentado a 180 °C durante 20 a 25 minutos, hasta que estén ligeramente doradas.',
+      'Dejar enfriar antes de consumir para que mantengan su forma.'
+    ],
+    calories: '794 kcal (receta completa)',
+    macros: { p: '11.4 g', c: '29.8 g', g: '76.8 g' }
+  },
+  {
+    id: '46',
+    title: 'Alfajores de Frutilla / Plátano',
+    category: 'Fase 3 etapa 3',
+    image: 'https://lh3.googleusercontent.com/d/1PQubhpGhuJlUs04uR6x2bbfINJeDVsGU',
+    description: 'Alfajores de fruta fresca rellenos y bañados en chocolate amargo.',
+    ingredients: [
+      '150 g frutilla fresca o plátano',
+      '40 g mantequilla de maní natural o manjar sin azúcar',
+      '40 g chocolate ≥75 % cacao'
+    ],
+    instructions: [
+      'Lavar y secar las frutas seleccionadas.',
+      'Cortar el plátano o las frutillas en rodajas de aproximadamente un centímetro de grosor para obtener piezas uniformes.',
+      'Colocar una pequeña cantidad de mantequilla de maní o manjar sin azúcar sobre una rodaja y cubrir con otra formando un pequeño “alfajor”.',
+      'Derretir el chocolate a baño maría o en microondas en intervalos cortos, removiendo para evitar que se queme.',
+      'Bañar cada alfajor en el chocolate fundido hasta cubrirlo completamente.',
+      'Colocar las unidades sobre papel de hornear y llevar al refrigerador durante al menos veinte minutos hasta que el chocolate se solidifique.'
+    ],
+    calories: '356 kcal',
+    macros: { p: '9.1 g', c: '28.4 g', g: '23.5 g' }
+  },
+  {
+    id: '48',
+    title: 'Hummus de Zanahoria',
+    category: 'Fase 3 etapa 3',
+    image: 'https://lh3.googleusercontent.com/d/1-EfyaVZFvwRjVR88P5xEhbQdmPhddZPS',
+    description: 'Hummus cremoso con zanahoria asada para un toque dulce y nutritivo.',
+    ingredients: [
+      '165 g garbanzos cocidos (1 taza)',
+      '60 g zanahoria asada',
+      '3 g ajo fresco (1 diente)',
+      '28 g aceite de oliva (2 cucharadas)',
+      'Sal y aliños a gusto'
+    ],
+    instructions: [
+      'Asar previamente la zanahoria en horno hasta que esté completamente blanda.',
+      'Colocar los garbanzos cocidos en una procesadora o licuadora junto con la zanahoria asada y el diente de ajo.',
+      'Procesar mientras se añade gradualmente el aceite de oliva para facilitar la emulsión.',
+      'Incorporar sal y aliños a gusto y continuar procesando hasta obtener una pasta homogénea y cremosa.',
+      'Si se requiere ajustar la textura, puede añadirse una pequeña cantidad de agua o del líquido de cocción de los garbanzos.',
+      'Refrigerar brevemente antes de servir para mejorar la consistencia.'
+    ],
+    calories: '451 kcal',
+    macros: { p: '14.1 g', c: '47.3 g', g: '23.2 g' }
+  },
+  {
+    id: '49',
+    title: 'Bocaditos de Yogurt y Frutilla',
+    category: 'Fase 3 etapa 3',
+    image: 'https://lh3.googleusercontent.com/d/1y48frDMV8u8lp0kfRxZZhe6AeNVSzT81',
+    description: 'Bocaditos congelados de yogurt con frutilla bañados en chocolate amargo.',
+    ingredients: [
+      '125 g yogurt natural endulzado (1 unidad)',
+      '150 g frutillas frescas (1 taza)',
+      '40 g chocolate ≥75 % cacao'
+    ],
+    instructions: [
+      'Lavar cuidadosamente las frutillas y cortarlas en cubos pequeños.',
+      'Colocar el yogurt natural en un recipiente y añadir las frutillas picadas, mezclando suavemente.',
+      'Sobre una bandeja cubierta con papel film o papel de hornear formar pequeños montículos con la mezcla utilizando una cuchara.',
+      'Llevar la bandeja al congelador durante aproximadamente una hora hasta que estén firmes.',
+      'Derretir el chocolate a baño maría o en microondas en intervalos cortos.',
+      'Bañar cada bocadito congelado en el chocolate fundido y volver a refrigerar hasta que el chocolate se solidifique.'
+    ],
+    calories: '301 kcal',
+    macros: { p: '8.7 g', c: '36.4 g', g: '14.9 g' }
+  },
+  {
+    id: '50',
+    title: 'Bastones de Plátano con Chocolate',
+    category: 'Fase 3 etapa 3',
+    image: 'https://lh3.googleusercontent.com/d/1eFH_Spu7KJoqngRX7Ln82yrXF0OoxBzL',
+    description: 'Bastones de plátano bañados en chocolate amargo con un toque de sal de mar.',
+    ingredients: [
+      '120 g plátano (1 unidad mediana)',
+      '40 g chocolate ≥75 % cacao sin azúcar añadida',
+      '1 g sal de mar (pizca)'
+    ],
+    instructions: [
+      'Pelar el plátano y cortarlo longitudinalmente formando bastones de tamaño uniforme.',
+      'Colocar los bastones sobre una bandeja cubierta con papel de hornear.',
+      'Derretir el chocolate a baño maría o en microondas en intervalos cortos.',
+      'Bañar cada bastón en el chocolate fundido hasta cubrirlo completamente.',
+      'Espolvorear una pequeña pizca de sal de mar sobre la superficie para potenciar los sabores.',
+      'Llevar al refrigerador durante al menos veinte minutos hasta que el chocolate se endurezca.'
+    ],
+    calories: '274 kcal',
+    macros: { p: '4.1 g', c: '33.6 g', g: '15.2 g' }
+  },
+  {
+    id: '51',
+    title: 'Galletas de Avena',
+    category: 'Fase 3 etapa 3',
+    image: 'https://lh3.googleusercontent.com/d/1nag8W1qe3KHJ2WDCNe9aH97_RCuEJxYD',
+    description: 'Galletas caseras de avena, nutritivas y perfectas para un snack saludable.',
+    ingredients: [
+      '360 g harina de avena (3 tazas)',
+      '80 g avena en hojuelas (1 taza)',
+      '96 g endulzante en polvo (1/2 taza)',
+      '150 g huevo (3 huevos)',
+      '60 ml aceite vegetal',
+      '5 ml esencia de vainilla'
+    ],
+    instructions: [
+      'En un recipiente amplio mezclar la harina de avena, la avena en hojuelas y el endulzante en polvo.',
+      'En otro recipiente batir los huevos junto con el aceite vegetal y la esencia de vainilla.',
+      'Incorporar gradualmente la mezcla líquida sobre los ingredientes secos y revolver hasta formar una masa consistente.',
+      'Formar pequeñas bolitas del mismo tamaño y colocarlas sobre una bandeja con papel de hornear.',
+      'Hornear en horno precalentado a 180 °C durante 10 a 15 minutos hasta que estén firmes y doradas.',
+      'Dejar enfriar antes de retirar de la bandeja para que mantengan su forma.'
+    ],
+    calories: '2093 kcal (receta completa)',
+    macros: { p: '82.7 g', c: '260.8 g', g: '85.9 g' }
+  },
+  {
+    id: '58',
+    title: 'Granola Casera',
+    category: 'Fase 3 etapa 3',
+    image: 'https://lh3.googleusercontent.com/d/1XlCxuyqgiK3CZM7P9Nqdb-SahQReLhxF',
+    description: 'Granola casera crocante y nutritiva con almendras, chía y avena, sin azúcar añadida.',
+    ingredients: [
+      '160 g avena en hojuelas (2 tazas)',
+      '140 g almendras picadas (1 taza)',
+      '24 g semillas de chía (2 cucharadas)',
+      '14 g harina de coco (2 cucharadas)',
+      '28 g aceite de oliva (2 cucharadas)',
+      '3 g canela en polvo (1 cucharadita)',
+      '5 ml esencia de vainilla natural (1 cucharadita)',
+      '1 g sal (pizca)',
+      'Alulosa líquida o en gotas (20–30 gotas)'
+    ],
+    instructions: [
+      'Precalentar el horno o freidora de aire a 170 °C.',
+      'En un recipiente amplio mezclar todos los ingredientes secos: avena, almendras, chía, harina de coco, canela y sal.',
+      'Añadir el aceite de oliva, la esencia de vainilla y el endulzante, mezclando hasta cubrir ligeramente los ingredientes.',
+      'Distribuir la mezcla de manera uniforme sobre una bandeja con papel de horno o aluminio.',
+      'Hornear durante 20 a 25 minutos, removiendo ocasionalmente para un tostado homogéneo.',
+      'Retirar y dejar enfriar completamente para que adquiera su textura crocante.'
+    ],
+    calories: '1336 kcal (receta completa)',
+    macros: { p: '37.9 g', c: '103.6 g', g: '91.4 g' }
+  },
+  {
+    id: '60',
+    title: 'Pasta de Berenjena',
+    category: 'Fase 3 etapa 3',
+    image: 'https://lh3.googleusercontent.com/d/15-eUJgNJbkrSaqeULV_6NC1At-3LipKL',
+    description: 'Pasta cremosa de berenjena (Baba Ganoush) con yogurt griego y cilantro.',
+    ingredients: [
+      '150 g berenjena cocida y pelada (1/2 unidad grande)',
+      '3 g ajo fresco (1 diente)',
+      '10 g jugo de limón (1/2 limón)',
+      '14 g aceite de oliva (1 cucharada)',
+      '15 g yogurt griego natural (1 cucharada)',
+      '5 g cilantro fresco (hojitas)',
+      '15 g tahini (1 cucharada, opcional)',
+      'Sal a gusto'
+    ],
+    instructions: [
+      'Cocer la berenjena hasta que esté blanda, retirar la piel y cortarla en tiras.',
+      'Colocar en una procesadora con el ajo, jugo de limón y aceite de oliva.',
+      'Añadir el yogurt griego para aportar cremosidad.',
+      'Incorporar el cilantro fresco y sal a gusto.',
+      'Opcional: agregar tahini para un sabor más intenso.',
+      'Procesar hasta obtener una pasta homogénea y suave.',
+      'Refrigerar brevemente antes de servir como dip o untable.'
+    ],
+    calories: '190 kcal (237 kcal con tahini)',
+    macros: { p: '3.1 g (5.6 g con tahini)', c: '9.2 g (10.6 g con tahini)', g: '15.4 g (19.7 g con tahini)' }
   }
 ];
 
@@ -1066,18 +1484,18 @@ export default function App() {
             </motion.div>
             
             <h2 className="text-5xl md:text-7xl font-bold mb-8 text-stone-900 leading-[1.1] tracking-tight text-balance">
-              Tu guía nutricional <br /> 
-              <span className="text-olive italic font-serif font-normal">paso a paso.</span>
+              Tu Recetario <br /> 
+              <span className="text-olive italic font-serif font-normal">Bariátrico.</span>
             </h2>
             
             <p className="text-xl text-stone-600 mb-10 max-w-xl leading-relaxed">
-              Más de 20 recetas detalladas con aporte nutricional exacto, diseñadas para acompañarte en cada fase de tu recuperación: desde la dieta líquida hasta la alimentación sólida.
+              60 recetas detalladas con aporte nutricional exacto, diseñadas para acompañarte en cada fase de tu recuperación: desde la dieta líquida hasta la alimentación sólida.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-6">
-              <button className="w-full sm:w-auto px-8 py-4 bg-olive text-white rounded-xl font-bold text-lg hover:bg-olive/90 transition-all shadow-xl shadow-olive/20 flex items-center justify-center gap-2 group">
+              <button className="w-full sm:w-auto px-10 py-5 bg-olive text-white rounded-xl font-bold text-xl hover:bg-olive/90 transition-all shadow-xl shadow-olive/20 flex items-center justify-center gap-3 group whitespace-nowrap">
                 Explorar Recetas por Fase
-                <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                <ChevronRight size={24} className="group-hover:translate-x-1 transition-transform" />
               </button>
               
               <div className="flex items-center gap-4">
@@ -1192,19 +1610,30 @@ export default function App() {
               </div>
               <h3 className="text-xl font-bold">Rachel Benchimol</h3>
             </div>
-            <p className="text-stone-500 text-sm leading-relaxed max-w-md">
+            <p className="text-stone-500 text-sm leading-relaxed max-w-md mb-6">
               Acompañamiento post bariátrico profesional para construir hábitos sostenibles y una relación saludable con la comida.
             </p>
+            <a 
+              href="https://rachelbenchimol.com/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-olive font-bold hover:underline group"
+            >
+              <Globe size={18} />
+              rachelbenchimol.com
+            </a>
           </div>
           <div className="md:text-right">
             <h4 className="text-xs uppercase tracking-widest font-bold text-stone-900 mb-6">Redes Sociales</h4>
             <div className="flex gap-4 md:justify-end">
-              {['Instagram', 'LinkedIn', 'YouTube'].map(social => (
-                <a key={social} href="#" className="w-10 h-10 rounded-full bg-stone-50 border border-stone-100 flex items-center justify-center text-stone-400 hover:bg-olive/10 hover:text-olive hover:border-olive/20 transition-all">
-                  <span className="sr-only">{social}</span>
-                  <div className="w-5 h-5 bg-current rounded-sm opacity-20" />
-                </a>
-              ))}
+              <a 
+                href="https://www.instagram.com/rachelb_nutricion/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-full bg-stone-50 border border-stone-100 flex items-center justify-center text-stone-400 hover:bg-olive/10 hover:text-olive hover:border-olive/20 transition-all"
+              >
+                <Instagram size={24} />
+              </a>
             </div>
           </div>
         </div>
