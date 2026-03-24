@@ -1,7 +1,46 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { Search, Clock, Users, ChevronRight, Utensils, Heart, Filter, BookOpen, X, Instagram, Globe } from 'lucide-react';
-import { useState, useMemo } from 'react';
+import { Search, Clock, Users, ChevronRight, Utensils, Heart, Filter, BookOpen, X, Instagram, Globe, AlertTriangle } from 'lucide-react';
+import React, { useState, useMemo, Component, ErrorInfo, ReactNode } from 'react';
 import { cn } from './lib/utils';
+
+class ErrorBoundary extends Component<{children: ReactNode}, {hasError: boolean, error: Error | null}> {
+  constructor(props: {children: ReactNode}) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    console.error("ErrorBoundary caught an error", error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="min-h-screen flex items-center justify-center bg-stone-50 p-6">
+          <div className="bg-white p-8 rounded-2xl shadow-xl max-w-lg w-full text-center">
+            <AlertTriangle className="w-16 h-16 text-red-500 mx-auto mb-4" />
+            <h1 className="text-2xl font-bold text-stone-900 mb-2">Algo salió mal</h1>
+            <p className="text-stone-500 mb-4">Ha ocurrido un error inesperado en la aplicación.</p>
+            <pre className="text-left bg-stone-100 p-4 rounded-lg text-xs text-red-600 overflow-auto max-h-48">
+              {this.state.error?.toString()}
+            </pre>
+            <button 
+              onClick={() => window.location.reload()} 
+              className="mt-6 px-6 py-2 bg-stone-900 text-white rounded-lg font-medium hover:bg-stone-800 transition-colors"
+            >
+              Recargar página
+            </button>
+          </div>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 interface Recipe {
   id: string;
@@ -1429,6 +1468,14 @@ const RecipeDetail = ({ recipe, onClose }: { recipe: Recipe, onClose: () => void
 };
 
 export default function App() {
+  return (
+    <ErrorBoundary>
+      <AppContent />
+    </ErrorBoundary>
+  );
+}
+
+function AppContent() {
   const [search, setSearch] = useState('');
   const [activeCategory, setActiveCategory] = useState('Todas');
   const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
@@ -1458,6 +1505,7 @@ export default function App() {
           </div>
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-stone-500">
             <a href="#" className="text-stone-900 border-b-2 border-olive pb-1">Recetario</a>
+            <a href="#videos" className="hover:text-stone-900 transition-colors">Videos</a>
             <a href="#" className="hover:text-stone-900 transition-colors">Contacto</a>
           </div>
           <button className="p-2 hover:bg-stone-100 rounded-full transition-colors md:hidden">
@@ -1598,6 +1646,39 @@ export default function App() {
             <p className="text-stone-500">Intenta buscar con otros términos o categorías.</p>
           </div>
         )}
+
+        {/* Videos Section */}
+        <section id="videos" className="mt-24 pt-16 border-t border-stone-200">
+          <div className="text-center mb-12">
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-olive mb-4 block">
+              Contenido Extra
+            </span>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-stone-900 mb-4">
+              Videos Recomendados
+            </h2>
+            <p className="text-stone-500 max-w-2xl mx-auto">
+              Material audiovisual de apoyo para complementar tu proceso y aprendizaje.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            <div className="aspect-[9/16] rounded-2xl overflow-hidden shadow-lg border border-stone-100 bg-stone-50 relative">
+              <iframe 
+                src="https://drive.google.com/file/d/1Za7GsoCOa5zRh6_T1f3xCQRsGF4rj5Ix/preview" 
+                className="w-full h-full absolute inset-0 border-0" 
+                allow="autoplay" 
+                allowFullScreen
+              ></iframe>
+            </div>
+            <div className="aspect-[9/16] rounded-2xl overflow-hidden shadow-lg border border-stone-100 bg-stone-50 relative">
+              <iframe 
+                src="https://drive.google.com/file/d/1NyRk_BC1RV0F-dx1ivHKyc6nTJqIYssd/preview" 
+                className="w-full h-full absolute inset-0 border-0" 
+                allow="autoplay" 
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        </section>
       </main>
 
       {/* Footer */}
