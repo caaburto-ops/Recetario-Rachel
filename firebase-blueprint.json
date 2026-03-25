@@ -1,0 +1,49 @@
+{
+  "entities": {
+    "AllowedUser": {
+      "title": "Allowed User",
+      "description": "A user email allowed to access the app.",
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "The allowed Gmail address."
+        },
+        "addedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the user was added."
+        },
+        "addedBy": {
+          "type": "string",
+          "description": "The UID of the admin who added this user."
+        }
+      },
+      "required": ["email", "addedAt", "addedBy"]
+    },
+    "UserRole": {
+      "title": "User Role",
+      "description": "Defines if a user is an admin.",
+      "type": "object",
+      "properties": {
+        "role": {
+          "type": "string",
+          "enum": ["admin", "patient"],
+          "description": "The role of the user."
+        }
+      },
+      "required": ["role"]
+    }
+  },
+  "firestore": {
+    "/allowedUsers/{emailId}": {
+      "schema": { "$ref": "#/entities/AllowedUser" },
+      "description": "List of allowed patient emails. The document ID should be the email address (or a sanitized version of it)."
+    },
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserRole" },
+      "description": "User roles and metadata."
+    }
+  }
+}
