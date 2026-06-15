@@ -43,8 +43,9 @@ service cloud.firestore {
     }
 
     match /allowedUsers/{emailId} {
-      // Admins can do everything. Patients can read their own email to check access.
-      allow read: if isAuthenticated() && (isAdmin() || request.auth.token.email == emailId);
+      // Admins can do everything. Patients can read any email to check access (get only, no listing).
+      allow get: if isAuthenticated();
+      allow list: if isAdmin();
       allow create, update: if isAdmin() && isValidAllowedUser(request.resource.data);
       allow delete: if isAdmin();
     }
