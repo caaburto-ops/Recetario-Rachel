@@ -2,9 +2,74 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Search, Clock, Users, ChevronRight, Utensils, Heart, Filter, BookOpen, X, Instagram, Globe, AlertTriangle, LogOut, Settings } from 'lucide-react';
 import React, { useState, useMemo, Component, ErrorInfo, ReactNode, useEffect } from 'react';
 import { cn } from './lib/utils';
-import { auth, db, googleProvider } from './firebase';
+import { auth, db, googleProvider, ADMIN_EMAILS } from './firebase';
 import { signInWithPopup, signOut, onAuthStateChanged, User } from 'firebase/auth';
 import { doc, getDoc, collection, setDoc, deleteDoc, onSnapshot, serverTimestamp } from 'firebase/firestore';
+
+// ===============================================================
+// Security & Sanitization Utilities
+// ===============================================================
+
+/**
+ * Sanitizes and normalizes an email address.
+ * Strips dangerous characters, trims, and converts to lowercase.
+ */
+function sanitizeEmail(email: string): string {
+  if (!email || typeof email !== 'string') return '';
+  return email
+    .replace(/[<>'"\s]/g, '') // remove HTML tag brackets, quotes, whitespace
+    .trim()
+    .toLowerCase()
+    .slice(0, 100); // limit length to 100 characters
+}
+
+/**
+ * Validates email format according to standard structure.
+ */
+function isValidEmail(email: string): boolean {
+  const sanitized = sanitizeEmail(email);
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return sanitized.length >= 5 && sanitized.length <= 100 && emailRegex.test(sanitized);
+}
+
+/**
+ * Sanitizes plain string inputs to prevent XSS / script injection.
+ */
+function sanitizeString(str: string): string {
+  if (!str || typeof str !== 'string') return '';
+  return str
+    .replace(/<[^>]*>?/gm, '') // strip HTML tags
+    .trim()
+    .slice(0, 200); // safety length cap
+}
+
+/**
+ * In-memory client-side rate limiter to prevent abuse on sensitive actions.
+ */
+class ClientRateLimiter {
+  private attempts: Map<string, number[]> = new Map();
+
+  isAllowed(actionKey: string, maxAttempts: number, windowMs: number): { allowed: boolean; retryAfterSec: number } {
+    const now = Date.now();
+    const timestamps = this.attempts.get(actionKey) || [];
+    const validTimestamps = timestamps.filter(t => now - t < windowMs);
+
+    if (validTimestamps.length >= maxAttempts) {
+      const oldest = validTimestamps[0];
+      const retryAfterSec = Math.ceil((windowMs - (now - oldest)) / 1000);
+      return { allowed: false, retryAfterSec };
+    }
+
+    validTimestamps.push(now);
+    this.attempts.set(actionKey, validTimestamps);
+    return { allowed: true, retryAfterSec: 0 };
+  }
+}
+
+const rateLimiter = new ClientRateLimiter();
+
+// Inactivity session timeout: 45 minutes
+const INACTIVITY_TIMEOUT_MS = 45 * 60 * 1000;
 
 enum OperationType {
   CREATE = 'create',
@@ -1537,26 +1602,51 @@ function AppContent() {
   const [isAllowed, setIsAllowed] = useState(false);
   const [view, setView] = useState<'app' | 'admin'>('app');
   const [loginError, setLoginError] = useState<string | null>(null);
+  const [sessionNotice, setSessionNotice] = useState<string | null>(null);
+
+  // Inactivity & Session Expiration Handler
+  useEffect(() => {
+    if (!user) return;
+
+    let timeoutId: NodeJS.Timeout;
+
+    const resetTimer = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(async () => {
+        setSessionNotice("Tu sesión ha expirado por inactividad (45 min) por motivos de seguridad. Inicia sesión nuevamente.");
+        await signOut(auth);
+      }, INACTIVITY_TIMEOUT_MS);
+    };
+
+    const activityEvents = ['mousedown', 'keydown', 'scroll', 'touchstart', 'click'];
+    activityEvents.forEach(evt => window.addEventListener(evt, resetTimer, { passive: true }));
+    resetTimer();
+
+    return () => {
+      clearTimeout(timeoutId);
+      activityEvents.forEach(evt => window.removeEventListener(evt, resetTimer));
+    };
+  }, [user]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
       if (currentUser) {
         try {
-          // Check if admin
+          // Check if admin via users collection or configured admin emails
           const userDoc = await getDoc(doc(db, 'users', currentUser.uid));
           const role = userDoc.exists() ? userDoc.data().role : null;
-          const userIsAdmin = role === 'admin' || currentUser.email === 'ca.aburto@gmail.com' || currentUser.email === 'nta.rbenchimol@gmail.com';
+          const currentEmailClean = sanitizeEmail(currentUser.email || '');
+          const userIsAdmin = role === 'admin' || ADMIN_EMAILS.includes(currentEmailClean);
           setIsAdmin(userIsAdmin);
 
           if (userIsAdmin) {
             setIsAllowed(true);
             setView('admin');
           } else {
-            // Check if allowed patient
-            const emailId = currentUser.email?.toLowerCase().trim();
-            if (emailId) {
-              const allowedDoc = await getDoc(doc(db, 'allowedUsers', emailId));
+            // Check if allowed patient with sanitized email ID
+            if (currentEmailClean) {
+              const allowedDoc = await getDoc(doc(db, 'allowedUsers', currentEmailClean));
               setIsAllowed(allowedDoc.exists());
             } else {
               setIsAllowed(false);
@@ -1577,8 +1667,16 @@ function AppContent() {
   }, []);
 
   const handleLogin = async () => {
+    // Rate limit login attempts: max 5 per 60 seconds
+    const limitCheck = rateLimiter.isAllowed('user_login', 5, 60000);
+    if (!limitCheck.allowed) {
+      setLoginError(`Demasiados intentos de acceso. Por seguridad, espera ${limitCheck.retryAfterSec} segundos.`);
+      return;
+    }
+
     try {
       setLoginError(null);
+      setSessionNotice(null);
       await signInWithPopup(auth, googleProvider);
     } catch (error: any) {
       console.error("Login error", error);
@@ -1587,6 +1685,7 @@ function AppContent() {
   };
 
   const handleLogout = async () => {
+    setSessionNotice(null);
     await signOut(auth);
   };
 
@@ -1599,7 +1698,7 @@ function AppContent() {
   }
 
   if (!user) {
-    return <LoginScreen onLogin={handleLogin} error={loginError} />;
+    return <LoginScreen onLogin={handleLogin} error={loginError} sessionNotice={sessionNotice} />;
   }
 
   if (!isAllowed && !isAdmin) {
@@ -1608,7 +1707,7 @@ function AppContent() {
         <div className="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 text-center">
           <AlertTriangle className="w-16 h-16 text-red-500 mx-auto mb-4" />
           <h2 className="text-2xl font-bold mb-2">Acceso Denegado</h2>
-          <p className="text-stone-500 mb-6">Tu correo ({user.email}) no está autorizado para ver este recetario. Contacta a la nutricionista para obtener acceso.</p>
+          <p className="text-stone-500 mb-6">Tu correo ({sanitizeString(user.email || '')}) no está autorizado para ver este recetario. Contacta a la nutricionista para obtener acceso.</p>
           <button onClick={handleLogout} className="px-6 py-2 bg-stone-900 text-white rounded-lg font-medium">Cerrar Sesión</button>
         </div>
       </div>
@@ -1622,7 +1721,7 @@ function AppContent() {
   return <RecetarioApp isAdmin={isAdmin} onGoToAdmin={() => setView('admin')} onLogout={handleLogout} />;
 }
 
-function LoginScreen({ onLogin, error }: { onLogin: () => void, error: string | null }) {
+function LoginScreen({ onLogin, error, sessionNotice }: { onLogin: () => void; error: string | null; sessionNotice?: string | null }) {
   return (
     <div className="min-h-screen bg-paper flex flex-col items-center justify-center p-6 selection:bg-olive/10 selection:text-olive">
       <div className="max-w-md w-full bg-white rounded-[2rem] shadow-2xl p-10 text-center relative overflow-hidden">
@@ -1633,9 +1732,16 @@ function LoginScreen({ onLogin, error }: { onLogin: () => void, error: string | 
         <h1 className="text-3xl font-serif font-bold text-stone-900 mb-2 leading-tight">
           Recetario <br/> <span className="text-olive italic font-normal">Bariátrico</span>
         </h1>
-        <p className="text-stone-500 mb-10 text-sm leading-relaxed">
+        <p className="text-stone-500 mb-8 text-sm leading-relaxed">
           Inicia sesión con tu cuenta de Google para acceder a tu recetario de transformación bariátrica y contenido exclusivo.
         </p>
+
+        {sessionNotice && (
+          <div className="mb-6 p-3.5 bg-amber-50 border border-amber-200 text-amber-800 text-xs rounded-xl text-left flex items-start gap-2">
+            <AlertTriangle size={16} className="text-amber-600 shrink-0 mt-0.5" />
+            <span>{sessionNotice}</span>
+          </div>
+        )}
         
         <button 
           onClick={onLogin}
@@ -1668,9 +1774,11 @@ function LoginScreen({ onLogin, error }: { onLogin: () => void, error: string | 
   );
 }
 
-function AdminPanel({ onLogout, onGoToApp }: { onLogout: () => void, onGoToApp: () => void }) {
+function AdminPanel({ onLogout, onGoToApp }: { onLogout: () => void; onGoToApp: () => void }) {
   const [emails, setEmails] = useState<{id: string, email: string}[]>([]);
   const [newEmail, setNewEmail] = useState('');
+  const [formError, setFormError] = useState<string | null>(null);
+  const [formSuccess, setFormSuccess] = useState<string | null>(null);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, 'allowedUsers'), (snapshot) => {
@@ -1684,26 +1792,53 @@ function AdminPanel({ onLogout, onGoToApp }: { onLogout: () => void, onGoToApp: 
 
   const handleAdd = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newEmail) return;
+    setFormError(null);
+    setFormSuccess(null);
+
+    const sanitized = sanitizeEmail(newEmail);
+
+    // Validation
+    if (!isValidEmail(sanitized)) {
+      setFormError("Por favor ingresa un correo electrónico válido (ejemplo: paciente@gmail.com).");
+      return;
+    }
+
+    // Rate limiting: max 15 additions per minute
+    const limitCheck = rateLimiter.isAllowed('admin_add_patient', 15, 60000);
+    if (!limitCheck.allowed) {
+      setFormError(`Límite de solicitudes alcanzado. Por seguridad, espera ${limitCheck.retryAfterSec} segundos.`);
+      return;
+    }
+
     try {
-      const emailId = newEmail.toLowerCase().trim();
-      await setDoc(doc(db, 'allowedUsers', emailId), {
-        email: emailId,
+      await setDoc(doc(db, 'allowedUsers', sanitized), {
+        email: sanitized,
         addedAt: serverTimestamp(),
-        addedBy: auth.currentUser?.uid
+        addedBy: auth.currentUser?.uid || 'admin'
       });
       setNewEmail('');
+      setFormSuccess(`Acceso concedido correctamente a ${sanitized}`);
+      setTimeout(() => setFormSuccess(null), 4000);
     } catch (error) {
-      handleFirestoreError(error, OperationType.WRITE, `allowedUsers/${newEmail.toLowerCase().trim()}`);
+      handleFirestoreError(error, OperationType.WRITE, `allowedUsers/${sanitized}`);
     }
   };
 
   const handleDelete = async (id: string) => {
-    if (!window.confirm("¿Seguro que deseas eliminar este acceso?")) return;
+    const sanitizedId = sanitizeEmail(id);
+    if (!window.confirm(`¿Seguro que deseas eliminar el acceso para ${sanitizedId}?`)) return;
+
+    // Rate limiting: max 10 deletions per minute
+    const limitCheck = rateLimiter.isAllowed('admin_delete_patient', 10, 60000);
+    if (!limitCheck.allowed) {
+      alert(`Límite de operaciones alcanzado. Espera ${limitCheck.retryAfterSec} segundos.`);
+      return;
+    }
+
     try {
-      await deleteDoc(doc(db, 'allowedUsers', id));
+      await deleteDoc(doc(db, 'allowedUsers', sanitizedId));
     } catch (error) {
-      handleFirestoreError(error, OperationType.DELETE, `allowedUsers/${id}`);
+      handleFirestoreError(error, OperationType.DELETE, `allowedUsers/${sanitizedId}`);
     }
   };
 
@@ -1713,7 +1848,7 @@ function AdminPanel({ onLogout, onGoToApp }: { onLogout: () => void, onGoToApp: 
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-12">
           <div>
             <h1 className="text-3xl font-serif font-bold mb-1">Panel de Administración</h1>
-            <p className="text-stone-500 text-sm">Gestiona los accesos al recetario bariátrico.</p>
+            <p className="text-stone-500 text-sm">Gestiona los accesos seguros al recetario bariátrico.</p>
           </div>
           <div className="flex items-center gap-3">
             <button onClick={onGoToApp} className="px-5 py-2.5 bg-olive text-white rounded-xl text-sm font-bold shadow-lg shadow-olive/20 hover:bg-olive/90 transition-colors flex items-center gap-2">
@@ -1730,16 +1865,30 @@ function AdminPanel({ onLogout, onGoToApp }: { onLogout: () => void, onGoToApp: 
           <div className="lg:col-span-1">
             <div className="bg-white rounded-[2rem] shadow-sm border border-stone-100 p-8 sticky top-8">
               <h2 className="text-xl font-serif font-bold mb-2">Agregar Paciente</h2>
-              <p className="text-stone-500 text-sm mb-6">Ingresa el correo de Gmail del paciente para darle acceso inmediato.</p>
+              <p className="text-stone-500 text-sm mb-6">Ingresa el correo de Gmail del paciente para darle acceso seguro e inmediato.</p>
               <form onSubmit={handleAdd} className="flex flex-col gap-4">
                 <input 
                   type="email" 
                   value={newEmail} 
                   onChange={e => setNewEmail(e.target.value)} 
                   placeholder="paciente@gmail.com" 
+                  maxLength={100}
                   className="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-olive/20 focus:border-olive transition-all text-sm"
                   required
                 />
+                
+                {formError && (
+                  <p className="text-xs text-red-600 bg-red-50 p-2.5 rounded-lg border border-red-100">
+                    {formError}
+                  </p>
+                )}
+
+                {formSuccess && (
+                  <p className="text-xs text-emerald-700 bg-emerald-50 p-2.5 rounded-lg border border-emerald-100">
+                    {formSuccess}
+                  </p>
+                )}
+
                 <button type="submit" className="w-full py-3 bg-stone-900 text-white rounded-xl font-bold text-sm hover:bg-stone-800 transition-colors">
                   Autorizar Acceso
                 </button>
@@ -1763,7 +1912,7 @@ function AdminPanel({ onLogout, onGoToApp }: { onLogout: () => void, onGoToApp: 
                       <div className="w-8 h-8 rounded-full bg-stone-100 flex items-center justify-center text-stone-400">
                         <Users size={14} />
                       </div>
-                      <span className="font-medium text-sm">{item.email}</span>
+                      <span className="font-medium text-sm">{sanitizeString(item.email)}</span>
                     </div>
                     <button 
                       onClick={() => handleDelete(item.id)} 
@@ -1932,7 +2081,8 @@ function RecetarioApp({ isAdmin, onGoToAdmin, onLogout }: { isAdmin: boolean, on
                 type="text"
                 placeholder="Busca recetas por fase o ingrediente..."
                 value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                maxLength={80}
+                onChange={(e) => setSearch(sanitizeString(e.target.value))}
                 className="w-full pl-12 pr-6 py-4 bg-white border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-olive/20 focus:border-olive transition-all text-sm shadow-sm"
               />
             </div>

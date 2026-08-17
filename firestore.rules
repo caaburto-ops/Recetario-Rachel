@@ -16,34 +16,38 @@ service cloud.firestore {
     }
 
     function isValidEmail(email) {
-      return email is string && email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+      return email is string && 
+             email.size() > 5 && 
+             email.size() <= 100 && 
+             email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
     }
 
     function isValidAllowedUser(data) {
       return data.keys().hasOnly(['email', 'addedAt', 'addedBy']) &&
              isValidEmail(data.email) &&
              data.addedAt is timestamp &&
-             data.addedBy is string;
+             data.addedBy is string && 
+             data.addedBy.size() <= 128;
     }
 
     function isValidUserRole(data) {
-      return data.keys().hasOnly(['role']) &&
+      return data.keys().hasOnly(['role', 'email', 'updatedAt']) &&
              data.role in ['admin', 'patient'];
     }
 
     // ===============================================================
-    // Rules
+    // Row Level Security (RLS) Rules
     // ===============================================================
 
     match /users/{userId} {
-      // Only admins can read/write roles, OR users can read their own role
+      // RLS: User can only read their own record, or admins can read any
       allow read: if isAuthenticated() && (request.auth.uid == userId || isAdmin());
-      // Only admins can create/update roles
+      // Only admins can create/update/delete roles
       allow create, update, delete: if isAdmin() && isValidUserRole(request.resource.data);
     }
 
     match /allowedUsers/{emailId} {
-      // Admins can do everything. Patients can read any email to check access (get only, no listing).
+      // RLS: Patients can only get/check access. Listing is strictly restricted to Admins.
       allow get: if isAuthenticated();
       allow list: if isAdmin();
       allow create, update: if isAdmin() && isValidAllowedUser(request.resource.data);
@@ -51,3 +55,4 @@ service cloud.firestore {
     }
   }
 }
+
