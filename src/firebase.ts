@@ -19,6 +19,9 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app, firebaseConfig.firestoreDatabaseId);
 export const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({
+  prompt: 'select_account',
+});
 
 // Load authorized admin emails from environment variable with fallback
 const envAdminEmails = import.meta.env.VITE_ADMIN_EMAILS;

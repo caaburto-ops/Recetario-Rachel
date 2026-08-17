@@ -1704,11 +1704,37 @@ function AppContent() {
   if (!isAllowed && !isAdmin) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-paper p-6">
-        <div className="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 text-center">
-          <AlertTriangle className="w-16 h-16 text-red-500 mx-auto mb-4" />
-          <h2 className="text-2xl font-bold mb-2">Acceso Denegado</h2>
-          <p className="text-stone-500 mb-6">Tu correo ({sanitizeString(user.email || '')}) no está autorizado para ver este recetario. Contacta a la nutricionista para obtener acceso.</p>
-          <button onClick={handleLogout} className="px-6 py-2 bg-stone-900 text-white rounded-lg font-medium">Cerrar Sesión</button>
+        <div className="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 text-center border border-stone-100">
+          <div className="w-16 h-16 bg-red-50 text-red-600 rounded-2xl flex items-center justify-center mx-auto mb-5">
+            <AlertTriangle className="w-8 h-8" />
+          </div>
+          <h2 className="text-2xl font-serif font-bold text-stone-900 mb-2">Acceso Denegado</h2>
+          <p className="text-stone-600 text-sm mb-4">
+            El correo que utilizaste no se encuentra en la lista de pacientes autorizados:
+          </p>
+          <div className="mb-6 py-2 px-4 bg-stone-50 border border-stone-200 rounded-xl text-stone-800 font-mono text-xs break-all select-all">
+            {sanitizeString(user.email || 'Sin correo asociado')}
+          </div>
+          <p className="text-stone-500 text-xs mb-6">
+            Si eres paciente, solicita a la nutricionista Rachel Benchimol que autorice tu correo.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <button 
+              onClick={async () => {
+                await handleLogout();
+                await handleLogin();
+              }}
+              className="flex-1 py-3 bg-olive text-white rounded-xl font-bold text-xs hover:bg-olive/90 transition-colors shadow-md shadow-olive/10"
+            >
+              Cambiar de cuenta
+            </button>
+            <button 
+              onClick={handleLogout} 
+              className="flex-1 py-3 bg-stone-100 text-stone-700 rounded-xl font-bold text-xs hover:bg-stone-200 transition-colors"
+            >
+              Cerrar Sesión
+            </button>
+          </div>
         </div>
       </div>
     );
